@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, ScrollView, Linking } from 'react-native'
 import React,{useState} from 'react'
-import { backGroundColor, fontFamilyMedium, fontFamilyLight, fontFamilyRegular, fontSizeMedium, fontSizeSmall, mainColor, fontSizeExtraSmall, fontFamilySemiBold } from '../utils'
-import  {
-  AboutIcon, ArrowLeftIcon, CamIcon, DarkModeIcon, HelpIcon, InstagramIcon,
-} from '../assets/icon'
+import {fontFamilyMedium, fontFamilyLight, fontFamilyRegular, fontSizeMedium, fontSizeSmall, mainColor, fontSizeExtraSmall, fontFamilySemiBold } from '../utils'
+import  { ArrowLeftIcon, InstagramIcon} from '../assets/icon'
 
 import { Button, Gap } from '../components'
 

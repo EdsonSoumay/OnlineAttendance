@@ -8,7 +8,6 @@ import { fontFamilyRegular,fontSizeSmall,  mainColor} from '../utils'
 import SelectDropdown from 'react-native-select-dropdown';
 
 import { useMyContext } from '../Context';
-import { getData } from '../localStorage'
 
 
 const listPresence = ["absen", "late", "ontime", "excuse"]
@@ -36,19 +35,14 @@ const MyModal = (props) => {
          justifyContent: "center",
         //  alignItems: "center"
          }}>
-          <View style={{ 
-                backgroundColor: "white",
-                //  padding: 20,
-                  borderRadius: 10 }}>
-            <View 
-            >
+          <View style={{ backgroundColor: "white",borderRadius: 10 }}>
+            <View >
             <View>
               <Text>select Member</Text>
               <SelectDropdown
                    buttonStyle={{width:'100%'}}
                   data={TableBody?.map(header => header[0]?.userName? `${header[0]?.userName}` : '-')}
                   onSelect={(select, index) => {
-                    // console.log(TableBody[index][0].userId);
                     setSelectedItem({...selectedItem, userId:TableBody[index][0]?.userId})
                   }}
                 />
@@ -61,7 +55,6 @@ const MyModal = (props) => {
                     dropdownStyle={{ width: '100%', justifyContent:'center' }}
                       data={TableHeader?.map(header => `${header?.absenDateString} - ${header?.absenTimeString} `)}
                       onSelect={(select, index) => {
-                        // console.log(TableHeader[index]._id);
                         setSelectedItem({...selectedItem, dateId:TableHeader[index]?._id})
                       }}
                     />

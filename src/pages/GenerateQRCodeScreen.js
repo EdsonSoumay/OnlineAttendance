@@ -232,8 +232,6 @@ const GenerateQRCodeScreen = (props) => {
 
   const { showFlash, message, isVisible, state, setState, CurrentSemesterContext, setCurrentSemesterContext } = useMyContext();
 
-  // console.log("state di qr cscren:",state)
-
     const [ListAbsenQRGenerate, setListAbsenQRGenerate] = useState()
     const [OpenMenuAbsen, setOpenMenuAbsen] = useState(null)
     const [ModalShowQRCode, setModalShowQRCode] = useState(false);
@@ -243,7 +241,6 @@ const GenerateQRCodeScreen = (props) => {
     const [ModalConfirm, setModalConfirm] = useState(false);
     const [ IdAbsen, setIdAbsen ] = useState()
     const [ActionType, setActionType] = useState(false) // false == edit absen, true == bikin absen baru. ini untuk reusable modal date time
-    const [CurrentSemester, ] = useState() // false == edit absen, true == bikin absen baru. ini untuk reusable modal date time
     const [refreshing, setRefreshing] = useState(false);
 
       useEffect(() => {
@@ -338,15 +335,12 @@ const GenerateQRCodeScreen = (props) => {
     const editAbsen = async (date) =>{
       console.log("edit absen");
       // let absenDate = ("0" + date.getDate()).slice(-2) + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" + date.getFullYear();
-
-      // console.log("id absen:",IdAbsen);
       await axios.put(`${urlEndpointAPI}/qrcode/${IdAbsen}`,{
         absenDate: date,
         regBy: 'default',
         // description: 'description',
       })
       .then(function (response) {
-        // console.log(response);
          showFlash(response.data.message);
         getAPI()
       })
@@ -357,11 +351,11 @@ const GenerateQRCodeScreen = (props) => {
 
   return (
     <>
-      {isVisible && (
-               <View style={styles.flashContainer}>
-                   <Text style={styles.flashMessage}>{message}</Text>
-                </View>
-            )}
+    {isVisible && (
+              <View style={styles.flashContainer}>
+                  <Text style={styles.flashMessage}>{message}</Text>
+              </View>
+          )}
 
     <ViewModalQRCode
         setModalShowQRCode={setModalShowQRCode} 
@@ -375,8 +369,6 @@ const GenerateQRCodeScreen = (props) => {
         action={ActionType? postAPI: editAbsen}
         setIdAbsen={setIdAbsen}
      />
-
-    {/* <View style={styles.mainContainer}> */}
 
       <View style={{height:'70%'}}>
         {/* Header */}
@@ -401,11 +393,8 @@ const GenerateQRCodeScreen = (props) => {
         refreshing={refreshing}
       />
       </View>
-      
-     
       {/* Footer */}
       {
-
       state?.role == ('President' || 'Vice President' || 'Secretary') ?
           <View style={{ 
             flexDirection:'column', 
@@ -430,13 +419,7 @@ const GenerateQRCodeScreen = (props) => {
         :
         null
       }
-
-
-    {/* </View> */}
-   
     </>
-
-
   );
 };
 
@@ -552,5 +535,3 @@ const styles = StyleSheet.create({
 });
 
 export default GenerateQRCodeScreen;
-
-

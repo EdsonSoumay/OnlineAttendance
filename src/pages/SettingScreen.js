@@ -20,7 +20,7 @@ const SettingScreen = ({navigation}) => {
         CommonActions.reset({
           index: 1,
           routes: [
-            { name: 'LogInScreen'},
+            { name: 'SplashScreen'},
           ],
         })
       );

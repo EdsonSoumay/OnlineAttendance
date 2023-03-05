@@ -19,7 +19,7 @@ const ConfirmModal = (props) => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [dataPassword, setDataPassword] = React.useState({
+  const [dataPassword, setDataPassword] = useState({
     password: '',
     isValidPassword: true,
 });
@@ -90,21 +90,20 @@ const updateSecureTextEntry = () => {
           <Button 
                 styleContainer={styles.buttonContainer} 
                 onPress={()=>{
-                  console.log("data password:",dataPassword.password)
-                  console.log("state.password:",state.password)
                   if(dataPassword.password == state.password){
-
                     if(status !== undefined){
                       //if selain hapus
                       action(status)
                       if(action2){
+                        //untuk read data qr code (late/ontime)
                         action2(data)
                       }
                       if(action3){
+                        //untuk edit data qr code dan add qr code
                         action3(type)
                       }
-  
-                    } else{ // untuk hapus
+                    } else{ 
+                      // untuk hapus
                       action(data)
                     }
                     setModalVisible(false)

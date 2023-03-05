@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 import { StyleSheet, Text, View, Dimensions, ScrollView,  TouchableOpacity, Platform, StatusBar, Alert, BackHandler } from 'react-native'
 
@@ -27,7 +27,7 @@ const { showFlash, message, isVisible, state, setState } = useMyContext();
 
   const { colors } = useTheme();
 
-  const [data, setData] = React.useState({
+  const [data, setData] = useState({
       username: '',
       password: '',
       check_textInputChange: false,
@@ -35,6 +35,8 @@ const { showFlash, message, isVisible, state, setState } = useMyContext();
       isValidUser: true,
       isValidPassword: true,
   });
+
+  const [Loading, setLoading] = useState(false)
 
 //   console.log("password:", data);
   // const {signIn} = React.useContext(AuthContext)
@@ -113,10 +115,12 @@ const { showFlash, message, isVisible, state, setState } = useMyContext();
         if(responseLogin == 'user successfuly login'){
             await storeData('userSession',userLogin)
             .then((e)=>{
+                setLoading(false)
                 props.navigation.replace('MainBottomTab')
             })
         }
         else{
+            setLoading(false)
             Alert.alert('Wrong Input!', `${responseLogin}`,[
                           {text:'Okay'}
                       ]); 
@@ -191,7 +195,10 @@ const { showFlash, message, isVisible, state, setState } = useMyContext();
                 <Button
                         styleContainer={{width:'100%'}}  
                         // onPress={()=>props.navigation.navigate('MainBottomTab')}
-                        onPress={()=>loginHandle()}
+                        onPress={()=>{
+                                loginHandle()
+                                setLoading(true)       
+                            }}
                         name = 'Login' 
                         color={secondColor.color}
                         size = {fontSizeBig.fontSize} 
@@ -200,6 +207,9 @@ const { showFlash, message, isVisible, state, setState } = useMyContext();
                     />
         </LinearGradient>
       </View>
+        <View>
+            <Text>{Loading == true?'loading':null}</Text>
+        </View>
       <Gap height={29}/>
     <View style={{flexDirection:'row', justifyContent:'center'}}>
         <Text style={{fontFamily:fontFamilyRegular.fontFamily, fontSize:fontSizeSmall.fontSize}}>Don’t have an account ?</Text>

@@ -22,7 +22,7 @@ const SplashScreen = (props) => {
           props.navigation.replace('MainBottomTab')
         }, 2000)
       }
-      else{
+      else if (jsonValue == null){
         setTimeout(() => {
           props.navigation.replace('LogInScreen')
         }, 2000)

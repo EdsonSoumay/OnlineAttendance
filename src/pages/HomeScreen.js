@@ -163,13 +163,7 @@ const updateCurrentSemester = async () =>{
  }
 }
 
-{/* <View style={styles.container}>
-{isVisible && (
-  <View style={styles.flashContainer}>
-    <Text style={styles.flashMessage}>{message}</Text>
-  </View>
-)}
-</View> */}
+console.log("State:",state)
 
   return (
     <View style={styles.container}>
@@ -245,13 +239,12 @@ const updateCurrentSemester = async () =>{
                               <View style={{height: 7, width: 7, borderRadius:3.4, backgroundColor: state?.status ? '#3ACBA9' : '#D49FB9'}}></View>
                           </View>
 
-                          {/* <Text style={styles.textActiveUser}>{state?.status ? 'Active' : 'InActive'}</Text> */}
                           <Text>{/* text bayangan */}</Text>
                           <Text>{/* text bayangan */}</Text>
                         </View>  
                       <Gap height={10}/>
                       <View style={styles.infoUserContainer}>
-                        <View style={styles.activeUserContainer}> 
+                        <View style={[styles.activeUserContainer, { flexDirection:'row', justifyContent:'center'}]}> 
                           <Text style={styles.textDivisionUser}>{state?.role }</Text>
                         </View>
                         <View style={styles.divisionUserContaier}> 
@@ -405,10 +398,10 @@ const styles = StyleSheet.create({
   nameUserContainer:{flexDirection:'row', flex: 1,  alignItems:'center', justifyContent:'space-around', marginBottom:-2},
   textUserContainer:{fontSize:fontSizeBig.fontSize, fontFamily:fontFamilyMedium.fontFamily, color:'#000000'},
   infoUserContainer: {flexDirection:'row', flex: 1, alignItems:'center', justifyContent:'space-around'},
-  activeUserContainer:{height: 26, width: '30%', paddingVertical:4, alignItems:'center', backgroundColor: `rgba(${mainColor.r}, ${mainColor.g}, ${mainColor.b}, 0.05)`, borderRadius: 5 },
+  activeUserContainer:{height: 26, maxWidth: '50%', paddingVertical:4, backgroundColor: `rgba(${mainColor.r}, ${mainColor.g}, ${mainColor.b}, 0.05)`, borderRadius: 5 },
   textActiveUser:{fontFamily:fontFamilyMedium.fontFamily, color:'#3ACBA9', fontSize:fontSizeSmall.fontSize},
-  divisionUserContaier:{height: 26, width: '30%', paddingVertical:4, alignItems:'center', backgroundColor:`rgba(${mainColor.r}, ${mainColor.g}, ${mainColor.b}, 0.05)`, borderRadius: 5 },
-  textDivisionUser:{fontFamily:fontFamilyMedium.fontFamily, color:`rgba(${mainColor.r}, ${mainColor.g}, ${mainColor.b}, 0.7)`},
+  divisionUserContaier:{height: 26, width: '35%', paddingVertical:4, alignItems:'center', backgroundColor:`rgba(${mainColor.r}, ${mainColor.g}, ${mainColor.b}, 0.05)`, borderRadius: 5 },
+  textDivisionUser:{fontFamily:fontFamilyMedium.fontFamily, color:`rgba(${mainColor.r}, ${mainColor.g}, ${mainColor.b}, 0.7)`, paddingHorizontal: 4},
   buttonContainer:{backgroundColor:`rgba(${mainColor.r}, ${mainColor.g}, ${mainColor.b}, 1)`, height: 39, borderRadius: 10, justifyContent:'center'},
   //body
   //part 1
